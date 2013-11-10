@@ -2,9 +2,9 @@
 
 #PBS -N PreCopy
 #PBS -l walltime=01:00:00
-#PBS -A ARLAP01001600
-#PBS -o harold-l3.arl.hpc.mil:/usr/var/tmp/jfitzpat/${PBS_JOBID}PreCopy.o
-#PBS -e harold-l3.arl.hpc.mil:/usr/var/tmp/jfitzpat/${PBS_JOBID}PreCopy.e
+#PBS -A INSERT_PROJECT_NAME
+#PBS -o SERVER_NAME:TEMP_USER_DIR/${PBS_JOBID}PreCopy.o
+#PBS -e SERVER_NAME:TEMP_USER_DIR/${PBS_JOBID}PreCopy.e
 
 #######################################################
 set JOBSOURCE = /p/cwfs/jfitzpat/${PBS_JOBID}
