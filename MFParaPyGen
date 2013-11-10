@@ -1,0 +1,72 @@
+#!/bin/csh
+
+set ParaPy_CD = ParaPy_CD
+set ParaPy_WD = ParaPy_WD
+mkdir -p ${ParaPy_WD}/bar_gauge_loc
+mkdir -p ${ParaPy_WD}/bar_spec_intrfc
+mkdir -p ${ParaPy_WD}/spec_xsec
+ 
+cd ${ParaPy_CD}
+
+module load cseinit
+module load paraview/3.14.1_mesa
+
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00c_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00c_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00c_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy00c_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy01_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy01_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy01_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy01_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy02_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy02_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy02_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy02_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy03_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy03_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy03_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy03_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04_3.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04c_0.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04c_1.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04c_2.py &
+pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy04c_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10c_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10c_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10c_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy10c_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11c_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11c_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11c_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy11c_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy20_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy20_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy20_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy20_3.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy21_0.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy21_1.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy21_2.py &
+#pvbatch --use-offscreen-rendering ${ParaPy_CD}/ParaPy21_3.py &
+
+wait
+
+module load matlab
+matlab -nodisplay -r "addpath('ParaPy_WD');SimDataParse"
+
+exit
