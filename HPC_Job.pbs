@@ -49,4 +49,4 @@ rm -r 01
 ##-----In case you are using aprepro ---------
 aprepro $INPUT.m.i > $INPUT.a.i
 date
-mpiexec_mpt ${SIERRA_EXE} -d `pwd`/ -i $INPUT.a.i -o $INPUT.log
+mpiexec_mpt -np $NSLOTS ${SIERRA_EXE} -d `pwd`/ -i $INPUT.a.i -o $INPUT.log
