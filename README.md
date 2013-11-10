@@ -10,5 +10,5 @@ A collection of bash, Python, MATLAB, and PBS scripts used to semi-automate the 
  *  "PostCopy.pbs"  -  File copy between compute nodes on work server and pre-processing server.
  
 
- *  "ParaPy00.py"  - Zero-th of n scripts, where n is number of processors utilized on compute node. This script serializes instances of ParaView (an open-source visualization program that does not support parallel computing); variables are set within the "JobSub.csh" script.
- *  "NewSimDataAnalysisROD.m" and "NewSimDataAnalysisROD_TR.m" -- MATLAB scripts with and without LaTeX markup, respectively.  This script covers permutations of the theoretical and mechanical analysis, generating plots of interest. 
+"ParaPy00.py"  - Zero-th of n scripts, where n is number of processors utilized on compute node. This script serializes instances of ParaView (an open-source visualization program that does not support parallel computing); variables are set within the "JobSub.csh" script.
+"NewSimDataAnalysisROD.m" and "NewSimDataAnalysisROD_TR.m" -- MATLAB scripts with and without LaTeX markup, respectively.  This script covers permutations of the theoretical and mechanical analysis, generating plots of interest. 
