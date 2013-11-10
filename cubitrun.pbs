@@ -5,7 +5,7 @@
 #PBS -N newmesh
 #PBS -l select=1:ncpus=32:mem=250gb
 #PBS -l walltime=18:00:00
-#PBS -A ARLAP01001600
+#PBS -A INSERT_PRJECT_NAME
 #############################################################
 
 # set path and filenames as variables
