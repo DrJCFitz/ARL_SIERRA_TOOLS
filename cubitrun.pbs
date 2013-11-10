@@ -1,0 +1,25 @@
+#!/bin/csh
+
+# RUN THIS SCRIPT ON UTILITY SERVER!
+
+#PBS -N newmesh
+#PBS -l select=1:ncpus=32:mem=250gb
+#PBS -l walltime=18:00:00
+#PBS -A ARLAP01001600
+#############################################################
+
+# set path and filenames as variables
+setenv MESH_PATH /u/home/jfitzpat/quarter_geometry/
+
+# best results when script coded in Python (note `py' extension below)
+set MESH_NAME = qtr1800crseR550shrtTB
+
+cd $MESH_PATH
+
+# load the module for CUBIT version on HPC resource
+module load cubit11.1
+
+# load CUBIT in batch mode (no prompt) on a compute node (without graphics)
+# and use a Python interpreter to read the script
+cubit -batch -nographics -prompt python ${MESH_NAME}.py 
+

@@ -1,0 +1,52 @@
+#!/bin/csh
+#PBS -N HPC_Job
+# select = # of nodes
+# mpiprocs is the amount of cpus on each node to use
+# this is an 16 cpu run because (select)x(mpiprocs)=16
+# !!!  ncpus must be 4 for MJM or 8 for HAROLD !!!
+#PBS -l place=scatter:excl
+#PBS -l application=sierra
+#PBS -k eo
+#PBS -A ARLAP01001600
+#PBS -o HPC_Job.eo
+
+#---- Load modules required for Presto --- 
+module purge
+module load Master pbs compiler/intel11.1 mpi/sgi_mpi-1.26
+
+#---- Setup working Jobname, Starting Dir, and Scratch Dir --- 
+setenv MESH_PATH MESH_PATH
+setenv WORK /usr/var/tmp/jfitzpat/JOBNUM
+set MESH_NAME = MESH_NAME
+set INPUT = INPUT
+
+# On Altix systems: tow & harold, use this form
+setenv NSLOTS `qstat -f ${PBS_JOBID} | awk '/Resource_List.ncpus/{print $3}'`
+
+## ---------SIERRA ENVIRONMENT -------------##
+#---- This is subject to change depending on the verision --- 
+# set location of the executable and the sierra.xlmdb file
+setenv SIERRA_VER 4.22.1
+setenv SIERRA_DIR /usr/cta/unsupported/sierra/version_${SIERRA_VER}/install/${SIERRA_VER}
+setenv SIERRA_EXE $SIERRA_DIR/presto/bin/presto_dp_linux-intel-11.1_opt.x
+setenv TOOLS /usr/cta/unsupported/sierra/version_${SIERRA_VER}/install/seacas/${SIERRA_VER}/bin
+setenv TOOLSE /usr/cta/unsupported/sierra/version_${SIERRA_VER}/install/seacas/${SIERRA_VER}/etc
+adds path for aprepro and other Sierra and Presto tools
+set path = ($SIERRA_DIR/bin $SIERRA_DIR/etc $TOOLS $TOOLSE $path)
+
+##################################################
+setenv JOBIDVAR `echo ${PBS_JOBI} | cut -f1 -d.`
+
+mkdir -p ${WORK}
+cd ${WORK}
+cp ${MESH_PATH}/${MESH_NAME}.g .
+
+sed -e "s/MESHNAME/${MESH_NAME}.g/g" ${INPUT}.i > ${INPUT}.m.i
+loadbal -p $NSLOTS -suffix_spread g -spread ${MESH_NAME}
+cp ${WORK}/01/* .
+rm -r 01 
+
+##-----In case you are using aprepro ---------
+aprepro $INPUT.m.i > $INPUT.a.i
+date
+mpiexec_mpt ${SIERRA_EXE} -d `pwd`/ -i $INPUT.a.i -o $INPUT.log

@@ -1,0 +1,16 @@
+#!/bin/csh
+
+#PBS -N PostCopy
+#PBS -A ARLAP01001600
+#######################################################
+set JOBSOURCE = /usr/var/tmp/jfitzpat/JOBNUM 
+set JOBDEST = /p/cwfs/jfitzpat/JOBNUM
+
+#free space by deleting mesh and restart files
+rm ${JOBSOURCE}/restart* ${JOBSOURCE}/*.g.*
+
+#copy remaining files in directory to CWFS
+cp -r ${JOBSOURCE}/* ${JOBDEST}
+
+#delete Exodus files from directory
+rm ${JOBSOURCE}/EXODUSIIFILE.e*

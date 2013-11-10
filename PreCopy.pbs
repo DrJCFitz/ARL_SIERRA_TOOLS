@@ -1,0 +1,14 @@
+#!/bin/csh
+
+#PBS -N PreCopy
+#PBS -l walltime=01:00:00
+#PBS -A ARLAP01001600
+#PBS -o harold-l3.arl.hpc.mil:/usr/var/tmp/jfitzpat/${PBS_JOBID}PreCopy.o
+#PBS -e harold-l3.arl.hpc.mil:/usr/var/tmp/jfitzpat/${PBS_JOBID}PreCopy.e
+
+#######################################################
+set JOBSOURCE = /p/cwfs/jfitzpat/${PBS_JOBID}
+set JOBDEST = /usr/var/tmp/jfitzpat/${PBS_JOBID}
+
+mkdir ${JOBDEST}
+cp ${JOBSOURCE}/* ${JOBDEST}/
