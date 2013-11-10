@@ -7,7 +7,7 @@
 #PBS -l place=scatter:excl
 #PBS -l application=sierra
 #PBS -k eo
-#PBS -A ARLAP01001600
+#PBS -A INSERT_PROJECT_NAME
 #PBS -o HPC_Job.eo
 
 #---- Load modules required for Presto --- 
@@ -16,7 +16,7 @@ module load Master pbs compiler/intel11.1 mpi/sgi_mpi-1.26
 
 #---- Setup working Jobname, Starting Dir, and Scratch Dir --- 
 setenv MESH_PATH MESH_PATH
-setenv WORK /usr/var/tmp/jfitzpat/JOBNUM
+setenv WORK /usr/var/tmp/INSERT_USER_NAME/JOBNUM
 set MESH_NAME = MESH_NAME
 set INPUT = INPUT
 
